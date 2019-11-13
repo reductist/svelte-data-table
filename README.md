@@ -38,7 +38,7 @@ Navigate to [localhost:5000](http://localhost:5000). You should see your app run
 By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
 
 
-## Code Examples
+## Code Examples & Customization
 This is a work-in-progress. I'm still working on genericizing/automating many of the components. Right now there are a few areas that need to be manually lined-up with your external data source.
 
 A full working [example](https://svelte.dev/repl/2774f569f14b47dd9e729ffeded25ddd?version=3.14.1) is available on the Svelte REPL.
@@ -47,6 +47,7 @@ A working demo is available [here](http://svelte-datatable.surge.sh/).
 
 Until I finish automating the data identifiers, here's you can set up a table that pulls from a new data source:
 
+---
 *App.Svelte*
 
 Assign your external data source:
@@ -72,7 +73,7 @@ Match this key in your filter input HTML:
 </div>
 ```
 
-Specify key sorting identifiers in your `<thead>`:
+Specify key sorting identifiers in `<thead>`:
 ```javascript
 <thead slot="head" let:displayData="{data}">
   <Header sortKey="userId">User ID</Header>
@@ -81,7 +82,7 @@ Specify key sorting identifiers in your `<thead>`:
 </thead>
 ```
 
-Specify key sorting identifiers in your `<thead>`:
+Specify keys to use to populate each row in `<td>`s:
 ```javascript
 <tbody slot="body" let:displayData="{displayData}">
   {#each displayData as row (row.title)}
