@@ -108,7 +108,6 @@
     align-items: baseline;
     display: flex;
   }
-
   .pagination {
     background: #2d2f3a;
     padding-left: 0.25em;
@@ -126,35 +125,31 @@
     border-top-style: ridge;
     align-items: baseline;
   }
-
   svg {
     padding: 0;
   }
-
   .disabled svg {
     color: grey;
   }
-
   .disabled a {
     cursor: not-allowed;
     color: #444;
   }
-
   span.page-item {
     padding: 0;
   }
-
   a.page-link:link {
     font-size: 20px;
     font-weight: 700;
     color: #00ffc4;
     text-decoration-line: none;
   }
-
   a.page-link:link:hover:not(.active) {
     background: #12141a;
   }
-
+  a.page-link:visited {
+    color: #00ffc4;
+  }
   span.boundary-link {
     font-family: 'Fira Code', monospace;
   }
