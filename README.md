@@ -105,40 +105,44 @@ Specify key sorting identifiers in your `<thead>`:
 
 I need to move the modal HTML into either the Modal.Svelte component, or a new, dedicated component. TODO. For now, it lives where the data lives, because of reasons.
 
-
-
 ```javascript
 {#if showModal}
-	<Modal on:close="{() => showModal = false}">
-		<h2 slot="header">
-			<span class="modal-title-span">
-				Item ID: {row.id}                                             // modal title: specify the associated key in your data
-			</span>
-			<p>
-				<em><span id="modal-subtitle-span">
-					Status: {(row.completed) ? 'Complete' : 'Incomplete'}       // modal subtitle: specify associated key 
-					</span>
-				</em>
-			</p>
-		</h2>
+  <Modal on:close="{() => showModal = false}">
+    <h2 slot="header">
+      <span class="modal-title-span">
+        Item ID: {row.id}                                             // modal title: specify the associated key in your data
+      </span>
+      <p>
+        <em><span id="modal-subtitle-span">
+          Status: {(row.completed) ? 'Complete' : 'Incomplete'}       // modal subtitle: specify associated key 
+          </span>
+        </em>
+      </p>
+    </h2>
 
-		<ul class="row-details">
-			{#if row.userId != undefined}                                   // list of keyed data items - does not render if undefined (eg: if not all nested objects contain all keys, you won't see 'undefined')
-				<li>User-ID: {row.userId}</li>
-			{/if}
-		</ul>
-		<div class='modal-main-text'>                                     // main text box: specify associated key
-			{#if row.title != undefined}
-				{row.title}
-			{:else}
-				No title available! <span style="color:yellow; background:black; padding:0.5em; border-radius:15%; font-weight:900;">{screwYouGuys}</span>
-			{/if}
-		</div>
-	</Modal>
+    <ul class="row-details">
+      {#if row.userId != undefined}                                   // list of keyed data items - does not render if undefined (eg: if not all nested objects contain all keys, you won't see 'undefined')
+        <li>User-ID: {row.userId}</li>
+      {/if}
+    </ul>
+    <div class='modal-main-text'>                                     // main text box: specify associated key
+      {#if row.title != undefined}
+        {row.title}
+      {:else}
+        No title available! <span style="color:yellow; background:black; padding:0.5em; border-radius:15%; font-weight:900;">{screwYouGuys}</span>
+      {/if}
+    </div>
+  </Modal>
 {/if}
 ```
 
 That should get you off the ground. Let me know if I missed anything. I'll work on re-pointing most of these manual assignments to top-level variables in the `<script>'s`.
+
+
+## Task List
+
+- [ ] add a task list
+
 
 ## Deploying to the web
 
@@ -178,4 +182,4 @@ surge public
 * The core of this project was shamelessly stolen from [a project by tochoromero](https://github.com/tochoromero/svelte-table) that I stumbled across while trawling for a dependency-free data table component with the functionality provided above. This is where all the tricky pagination/sorting/filtering bits using stores came from. For the most part, all I did was add the modal data dive-down and hooked up an external data source. Thanks for your hard work on this!
 * [https://css-tricks.com/](CSS-Tricks) for having answers to every CSS question I Googled.
 * [https://developer.mozilla.org/en-US/docs/Web/JavaScript](MDN) for the best dang Javascript documentation around (imo).
-* [https://github.com/emarcotte](emarcotte) for answering tons of dumb questions (thanks).
+* @emarcotte for answering tons of dumb questions (thanks).
