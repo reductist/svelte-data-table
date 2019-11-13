@@ -11,7 +11,7 @@ This is a set of components for a paginated, sortable, filterable data table wit
 To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
 
 ```bash
-npx degit pvonrickenbach/svelte-data-table svelte-app
+npx degit reductist/svelte-data-table svelte-app
 cd svelte-app
 ```
 
