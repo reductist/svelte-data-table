@@ -41,9 +41,9 @@ By default, the server will only respond to requests from localhost. To allow co
 ## Code Examples
 This is a work-in-progress. I'm still working on genericizing/automating many of the components. Right now there are a few areas that need to be manually lined-up with your external data source.
 
-A full working [https://svelte.dev/repl/2774f569f14b47dd9e729ffeded25ddd?version=3.14.1](example) is available on the Svelte REPL.
+A full working [example](https://svelte.dev/repl/2774f569f14b47dd9e729ffeded25ddd?version=3.14.1) is available on the Svelte REPL.
 
-A working demo is available [http://svelte-datatable.surge.sh/](here).
+A working demo is available [here](http://svelte-datatable.surge.sh/).
 
 Until I finish automating the data identifiers, here's you can set up a table that pulls from a new data source:
 
