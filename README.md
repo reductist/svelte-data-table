@@ -43,6 +43,8 @@ This is a work-in-progress. I'm still working on genericizing/automating many of
 
 A full working [https://svelte.dev/repl/2774f569f14b47dd9e729ffeded25ddd?version=3.14.1](example) is available on the Svelte REPL.
 
+A working demo is available [http://svelte-datatable.surge.sh/](here).
+
 Until I finish automating the data identifiers, here's you can set up a table that pulls from a new data source:
 
 *App.Svelte*
