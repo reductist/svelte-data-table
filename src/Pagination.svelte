@@ -1,149 +1,170 @@
 <script>
-	export let currentPage
-	export let totalPages
-	export let hideSinglePage = true
-	export let maxPageLinks = 5
-	export let boundaryLinks = false
-	export let firstText = 'First'
-	//Fexport let lastText = 'Last'
-	export let directionLinks = true
-	
-	$: displayPages = (() => {
-		function displayAllPages () {
-			const displayPages = []
-			for (let i = 1; i <= totalPages; i++) {
-				displayPages.push({
-					title: i.toString(),
-					value: i
-				})
-			}
-			return displayPages
-		}
+  // --- settings --- \\
+  export let currentPage;
+  export let totalPages;
+  export let hideSinglePage = true;
+  export let maxPageLinks = 5;
+  export let boundaryLinks = true;
+  export let firstText = '<-';
+  export let lastText = '->';
+  export let directionLinks = true;
+  // --- \\
+  
+  $: displayPages = (() => {
+    function displayAllPages() {
+      const displayPages = []
+      for (let i = 1; i <= totalPages; i++) {
+        displayPages.push({
+          title: i.toString(),
+          value: i
+        })
+      }
+      return displayPages
+    }
 
-		function limitVisiblePages () {
-			const displayPages = []
-			const totalTiers = Math.ceil(totalPages / maxPageLinks)
-			const activeTier = Math.ceil(currentPage / maxPageLinks)
-			const start = ((activeTier - 1) * maxPageLinks) + 1
-			const end = start + maxPageLinks
-			
-			if (activeTier > 1) {
-				displayPages.push({
-					title: '...',
-					value: start - 1
-				})
-			}
+    function limitVisiblePages() {
+      const displayPages = []
+      const totalTiers = Math.ceil(totalPages / maxPageLinks)
+      const activeTier = Math.ceil(currentPage / maxPageLinks)
+      const start = ((activeTier - 1) * maxPageLinks) + 1
+      const end = start + maxPageLinks
 
-			for (let i = start; i < end; i++) {
-				if (i > totalPages) {
-					break
-				}
-				displayPages.push({
-					title: i.toString(),
-					value: i
-				})
-			}
+      if (activeTier > 1) {
+        displayPages.push({
+          title: '...',
+          value: start - 1
+        })
+      }
 
-			if (activeTier < totalTiers) {
-				displayPages.push({
-					title: '...',
-					value: end
-				})
-			}
-			return displayPages
-		}
+      for (let i = start; i < end; i++) {
+        if (i > totalPages) {
+          break
+        }
+        displayPages.push({
+          title: i.toString(),
+          value: i
+        })
+      }
 
-		if (isNaN(maxPageLinks) || maxPageLinks <= 0) {
-			return displayAllPages()
-		} else {
-			return limitVisiblePages()
-		}
-	})()
+      if (activeTier < totalTiers) {
+        displayPages.push({
+          title: '...',
+          value: end
+        })
+      }
+      return displayPages
+    }
 
-	function selectPage (page) {
-			if (page < 1 || page > totalPages || page === currentPage) {
-					return
-			}
-			currentPage = page
-	}
+    if (isNaN(maxPageLinks) || maxPageLinks <= 0) {
+      return displayAllPages()
+    } else {
+      return limitVisiblePages()
+    }
+  })()
 
-	function nextPage () {
-			if (currentPage < totalPages) {
-				currentPage++
-			}
-	}
+  function selectPage(page) {
+    if (page < 1 || page > totalPages || page === currentPage) {
+      return
+    }
+    currentPage = page
+  }
 
-	function previousPage () {
-			if (currentPage > 1) {
-				currentPage--
-			}
-	}
+  function nextPage() {
+    if (currentPage < totalPages) {
+      currentPage++
+    }
+  }
 
-	function firstPage () {
-			currentPage = 1
-	}
+  function previousPage() {
+    if (currentPage > 1) {
+      currentPage--
+    }
+  }
 
-	function lastPage () {
-			currentPage = totalPages
-	}
-	
-	// preventDefault() listener to block the .page-link 'a' elements from opening new browser windows.
-	// Calling as a typical listener executes before the DOM renders the element target, so instead we'll
-	// call back from inside a DOMContentLoaded listener.
-	document.addEventListener('DOMContentLoaded', (event) => {
-		const pl = document.getElementsByClassName("page-link");
-		pl.addEventListener('click', (event) 	=> {
-			event.preventDefault();
-		})
-	})
-												
+  function firstPage() {
+    currentPage = 1
+  }
+
+  function lastPage() {
+    currentPage = totalPages
+  }
+
+  // preventDefault() listener to block the .page-link 'a' elements from opening new browser windows.
+  // Calling as a typical listener executes before the DOM renders the element target, so instead we'll
+  // call back from inside a DOMContentLoaded listener. There's likely a more-Sveltian way to handle this... //TODO\\.
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const pl = document.getElementsByClassName("page-link");
+    pl.addEventListener('click', (event) => {
+      event.preventDefault();
+    })
+  })
 </script>
 
 <style>
-	.smart-pagination {
-		width: fit-content;
-	}
-	.pagination {
-		background: #2d2f3a;
-		padding-left: 0.25em;
-		padding-right: 0.25em;
-		padding-top: 0.7em;
-		padding-bottom: 0.5em;
-		border-left: 1px solid #00ffc4;
-		border-right: 1px solid #00ffc4;
-		border-bottom: 1px solid #00ffc4;
-		border-bottom-left-radius: 10px;
-	}
-	svg {
-		padding: 0;
-	}
-	.disabled svg {
-		color: grey;
-	}
-	.disabled a {
-		cursor: not-allowed;
-		color: #444;
-	}
-	span.page-item {
-		padding: 0;
-	}
-	a.page-link:link {
-		font-size: 20px;
-		font-weight: 700;
-		padding: 6px;
-		color: #00ffc4;
-		text-decoration-line: none;
-	}
-	a.page-link:link:hover:not(.active) {
-		background: #12141a;
-	}
+  .smart-pagination {
+    width: 20vw;
+    min-width: 250px;
+    max-width: 320px;
+    align-items: baseline;
+    display: flex;
+  }
+
+  .pagination {
+    background: #2d2f3a;
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+    padding-top: 0.7em;
+    padding-bottom: 0.5em;
+    border-left: 1px solid #00ffc4;
+    border-right: 1px solid #00ffc4;
+    border-bottom: 1px solid #00ffc4;
+    border-bottom-left-radius: 10px;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    border-top: 1px #000;
+    border-top-style: ridge;
+    align-items: baseline;
+  }
+
+  svg {
+    padding: 0;
+  }
+
+  .disabled svg {
+    color: grey;
+  }
+
+  .disabled a {
+    cursor: not-allowed;
+    color: #444;
+  }
+
+  span.page-item {
+    padding: 0;
+  }
+
+  a.page-link:link {
+    font-size: 20px;
+    font-weight: 700;
+    color: #00ffc4;
+    text-decoration-line: none;
+  }
+
+  a.page-link:link:hover:not(.active) {
+    background: #12141a;
+  }
+
+  span.boundary-link {
+    font-family: 'Fira Code', monospace;
+  }
 </style>
 
 {#if !(hideSinglePage && totalPages === 1)}
 <nav class="smart-pagination">
 	<div class="pagination">
 		{#if boundaryLinks}
-		<span class:disabled="{currentPage === 1}" class="page-item">
+		<span class:disabled="{currentPage === 1}" id="first-page" class="page-item boundary-link">
 			<a href="#javascript:void(0)" aria-label="Previous" on:click="{firstPage}" class="page-link">
 				<span aria-hidden="true">{@html firstText}</span>
 			</a>
@@ -180,10 +201,10 @@
 		</span>
 		{/if}
 		{#if boundaryLinks}
-		<span class:disabled="{currentPage === totalPages}" class="page-item">
-			<a href="#javascript:void(0)" aria-label="Previous" on:click="{lastPage}" class="page-link">
-				<span aria-hidden="true" v-html="lastText"></span>
-			</a>
+			<span class:disabled="{currentPage === totalPages}" id="last-page" class="page-item boundary-link">
+				<a href="#javascript:void(0)" aria-label="Last" on:click="{lastPage}" class="page-link">
+					<span aria-hidden="true">{@html lastText}</span>
+				</a>
 		</span>
 		{/if}
 	</div>
