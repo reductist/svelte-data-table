@@ -110,33 +110,38 @@ I need to move the modal HTML into either the Modal.Svelte component, or a new, 
   <Modal on:close="{() => showModal = false}">
     <h2 slot="header">
       <span class="modal-title-span">
-        Item ID: {row.id}                                             // modal title: specify the associated key in your data
+        // modal title: specify the associated key in your data
+        Item ID: {row.id}
       </span>
       <p>
         <em><span id="modal-subtitle-span">
-          Status: {(row.completed) ? 'Complete' : 'Incomplete'}       // modal subtitle: specify associated key 
+          // modal subtitle: specify associated key
+          Status: {(row.completed) ? 'Complete' : 'Incomplete'}
           </span>
         </em>
       </p>
     </h2>
 
     <ul class="row-details">
-      {#if row.userId != undefined}                                   // list of keyed data items - does not render if undefined (eg: if not all nested objects contain all keys, you won't see 'undefined')
+      // list of keyed data items - does not render if undefined (eg: if not all nested objects contain all keys, you won't see 'undefined')
+      {#if row.userId != undefined}
         <li>User-ID: {row.userId}</li>
       {/if}
     </ul>
-    <div class='modal-main-text'>                                     // main text box: specify associated key
+    // main text box: specify associated key
+    <div class='modal-main-text'>
       {#if row.title != undefined}
         {row.title}
       {:else}
-        No title available! <span style="color:yellow; background:black; padding:0.5em; border-radius:15%; font-weight:900;">{screwYouGuys}</span>
+        No title available! 
+        <span>{screwYouGuys}</span>
       {/if}
     </div>
   </Modal>
 {/if}
 ```
 
-That should get you off the ground. Let me know if I missed anything. I'll work on re-pointing most of these manual assignments to top-level variables in the `<script>'s`.
+That should get you off the ground. Let me know if I missed anything. I'll work on re-pointing most of these manual assignments to top-level variables in the `<script>`s.
 
 
 ## Task List
