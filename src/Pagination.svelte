@@ -93,9 +93,11 @@
   // Calling as a typical listener executes before the DOM renders the element target, so instead we'll
   // call back from inside a DOMContentLoaded listener. There's likely a more-Sveltian way to handle this... //TODO\\.
   document.addEventListener('DOMContentLoaded', (event) => {
-    const pl = document.getElementsByClassName("page-link");
-    pl.addEventListener('click', (event) => {
-      event.preventDefault();
+    // querySelectorAll returns a NodeList over which we can iterate after applying the spread operator.
+    const pageLinks = [...document.querySelectorAll('.page-link')];  // Cast NodeList to iterable array.
+    // Apply preventDefault() to each '.page-link' element.
+    pageLinks.forEach( pageLink => {
+        pageLink.addEventListener('click', (event) => event.preventDefault());
     })
   })
 </script>
