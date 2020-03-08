@@ -71,6 +71,7 @@ function sort () {
 		border: 1px solid #676d6d;
 		font-family: 'Fira Code';
 		font-size: 1rem;
+		cursor: pointer;
 	}
 	th:nth-child(1) {
 		width: 10%;

@@ -1,5 +1,5 @@
 {
-  "name": "svelte-app",
+  "name": "svelte-datatable",
   "version": "1.0.0",
   "devDependencies": {
     "rollup": "^1.12.0",
@@ -18,5 +18,17 @@
     "dev": "rollup -c -w",
     "start": "sirv public --single",
     "start:dev": "sirv public --single --dev"
-  }
+  },
+  "description": "*Psst* looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*",
+  "main": "rollup.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reductist/svelte-data-table.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reductist/svelte-data-table/issues"
+  },
+  "homepage": "https://github.com/reductist/svelte-data-table#readme"
 }
