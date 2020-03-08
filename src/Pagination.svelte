@@ -162,7 +162,7 @@
   <div class="pagination">
     {#if boundaryLinks}
     <span class:disabled="{currentPage === 1}" id="first-page" class="page-item boundary-link">
-      <a href="#javascript:void(0)" aria-label="Previous" on:click="{firstPage}" class="page-link">
+      <a href="#" aria-label="Previous" on:click="{firstPage}" class="page-link">
         <span aria-hidden="true">{@html firstText}</span>
       </a>
     </span>
@@ -170,7 +170,7 @@
 
     {#if directionLinks }
     <span class:disabled="{currentPage === 1}" class="page-item">
-      <a href="javascript:void(0)" aria-label="Previous" on:click="{previousPage}" class="page-link">
+      <a href="" aria-label="Previous" on:click="{previousPage}" class="page-link">
         <slot name="previousIcon" disabled="{currentPage === 1}">
           <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
             <path fill="currentColor"
@@ -182,12 +182,12 @@
     {/if}
     {#each displayPages as page (page.value)}
     <span class="page-item" class:active="{currentPage === page.value}">
-      <a href="#javascript:void(0)" on:click="{() => selectPage(page.value)}" class="page-link">{page.title}</a>
+      <a href="#" on:click="{() => selectPage(page.value)}" class="page-link">{page.title}</a>
     </span>
     {/each}
     {#if directionLinks}
     <span class:disabled="{currentPage === totalPages}" class="page-item">
-      <a href="#javascript:void(0)" aria-label="Next" on:click="{nextPage}" class="page-link">
+      <a href="#" aria-label="Next" on:click="{nextPage}" class="page-link">
         <slot name="nextIcon" disabled="{currentPage === totalPages}">
           <svg width="16" height="16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
             <path fill="currentColor"
@@ -199,7 +199,7 @@
     {/if}
     {#if boundaryLinks}
       <span class:disabled="{currentPage === totalPages}" id="last-page" class="page-item boundary-link">
-        <a href="#javascript:void(0)" aria-label="Last" on:click="{lastPage}" class="page-link">
+        <a href="#" aria-label="Last" on:click="{lastPage}" class="page-link">
           <span aria-hidden="true">{@html lastText}</span>
         </a>
     </span>
